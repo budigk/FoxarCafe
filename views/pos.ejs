@@ -47,6 +47,7 @@ td{
     margin: 0;
     border: 2px solid wheat;   
     color: white;
+    height: 50px;
 }
 
 #tabelPesanan td{
@@ -134,7 +135,47 @@ th, td {
         <td>
             <div id="divPesanan">
                 <h1>Pesanan</h1>
-                <table id="tabelPesanan" style="width: 600px;"></table>
+                <table id="tabelPesanan"  style="width: 600px;">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th style="width: 1800px;">Name Menu</th>
+                            <th style="width: 300px;">Qty</th>
+                            <th>Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% pesanan.forEach((el, no) => { %>
+                            <tr>
+                                <td class="col-md-auto"><%= no + 1 %></td>
+                                <td><%= el.menu_name %></td>
+                                <td><%= el.qty %></td>
+                                <td><%= formatNumber((el.qty * el.price), "price") %></td>
+                            </tr>
+                        <% }); %>   
+                        <tr>
+                            <td colspan="3">TOTAL</td>
+                            <td><%=formatNumber(getTotalCart(pesanan), "price")%></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container p-3 my-3 border">
+                <form method="POST">
+                <div class="mb-3">
+                    <label for="payment_type" class="form-label">Payment Type</label>
+                    <select id="payment_type" name="payment_type" class="form-control">
+                        <option value="CASH">CASH</option>    
+                        <option value="CARD">CARD</option>    
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="paymentamount" class="form-label">Payment Amount</label>
+                    <input type="number" class="form-control" id="paymentamount" name="paymentamount" required value="0">
+                </div>
+                <button type="submit" class="btn btn-primary">Process Payment</button>
+              </form>
             </div>
         </td>
     </tr>

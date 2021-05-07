@@ -92,7 +92,7 @@ class MenuModel{
             order: ["id"],
         })
         .then(results => {
-            res.render('pos', {results})
+            res.render('pos', {results, pesanan: req.session.cart})
         })
         .catch(err => {
             res.send(err);

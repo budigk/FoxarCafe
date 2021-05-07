@@ -16,9 +16,11 @@ class UserModel{
 
                 console.log(result)
                 if (compare) {
+                    
                     req.session.user_id = result.id
                     req.session.user_name = result.user_name
                     req.session.role = result.role
+                    req.session.cart = [];
 
                     console.log("SESSION ==>>", req.session)
                     res.redirect('/category')

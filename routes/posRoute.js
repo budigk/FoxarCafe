@@ -6,4 +6,6 @@ const posModel = require('../controllers/posModel');
 router.get('/', menuModel.pos)
 router.get('/pesan/:id', posModel.pesan)
 
+router.post('/', posModel.create)
+
 module.exports = router
