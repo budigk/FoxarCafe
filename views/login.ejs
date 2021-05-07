@@ -1,0 +1,71 @@
+<%- include('partials/header', {title: 'Login Foxar Cafe'}) %>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: rgb(219, 226, 226);
+        }
+        .row{
+            background: white;
+            border-radius: 30px;
+            box-shadow: 12px 12px 22px grey;
+        }
+        img{
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+
+        .btn1{
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn1:hover{
+            background: white;
+            border: 1px solid;
+            color: black;
+        }
+    </style>
+
+    <section class="Form my-4 mx-5">
+        <form method="POST" action="/users/login">
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-lg-5">
+                        <img src="/images/login.jpg" class="img-fluid" alt="login images">
+                    </div>
+                    <div class="col-lg-7 px-5 pt-5">
+                        <h1 class="font-weight-bold py-3">Foxar Cafe</h1>
+                        <h4>Sign into your account</h4>
+                        <h5><%= alert != "undefined"?alert:"" %> </h5>
+                        <form>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <input type="userid" placeholder="Username" id="user_name" name="user_name" class="form-control my-3 p-4">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="password" placeholder="******" id="password" name="password" class="form-control my-3 p-4">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <button type="submit" class="btn1 mt-3 mb-5">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </section>
+        <%- include('partials/footer') %>

@@ -11,12 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      TransDetail.belongsTo(models.TransMain, {foreignKey: "trans_main_id"})
+      TransDetail.belongsTo(models.Menu, {foreignKey: "menu_id"})
     }
   };
   TransDetail.init({
     qty: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
-    discount: DataTypes.FLOAT
+    discount: DataTypes.FLOAT,
+    trans_main_id: DataTypes.INTEGER,
+    menu_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'TransDetail',

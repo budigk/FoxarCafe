@@ -1,0 +1,55 @@
+<%- include('partials/header', {title: 'User'}) %>
+<div class="container p-3 my-3 border">
+    <h2>Users Account : <%= options %> Data </h2>
+    <form method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Username</label>
+      <input type="text" class="form-control" id="user_name" name="user_name" placeholder="e.g: JohnWalker" required value="<%= data.user_name %>">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="**********" required>
+      </div>
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select id="role" name="role" class="form-control">
+            <option value="">== Select Role ==</option>    
+            <option value="Admin" <%=data.role == "Admin"?"selected":""%>>Admin</option>    
+            <option value="Cashier" <%=data.role == "Cashier"?"selected":""%>>Cashier</option>    
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary"><%= options=="Entri"?"Add Data":"Update"%></button>
+    <a href="/users" class="btn btn-danger" role="button">Cancel</a>
+  </form>
+</div>
+
+  <div class="container mb-5 mt-3">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped table-bordered" style="width: 100%;">
+          <thead>
+            <tr>
+              <th  class="col-md-auto">No.</th>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% results.forEach((el, no) => { %>
+                <tr>
+                    <td class="col-md-auto"><%= no + 1 %></td>
+                    <td><%= el.user_name %></td>
+                    <td><%= el.role %></td>
+                    <td>
+                        <a href="/users/edit/<%= el.id  %>" class="btn btn-success" role="button"><i class="fa fa-edit"></i></a>
+                        <a href="/users/delete/<%= el.id  %>" class="btn btn-danger" role="button"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footer') %>
